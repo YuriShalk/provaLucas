@@ -26,14 +26,14 @@
         {{ tarefa.nomeDaTarefa }}
     
     </div>
-    <h2>Things done:</h2>
+<h2>Things done:</h2>
     <div class="lista-tarefas-completas"
         v-for="tarefaCompleta in listaTarefasCompletadas"
         :key="tarefaCompleta.index"
     >
 
     <button id="delete-button" @click="removeTarefaCompletada(index)">&#10060;</button>
-    {{ tarefaCompleta.nomeDaTarefa }}
+    {{ tarefaCompleta.nomeDaTarefa2 }}
 
     </div>
 </template>
@@ -42,18 +42,22 @@
 export default {
     data() {
         return {
-            listaTarefas: [
-                {nomeDaTarefa: 'task 1'},
-                {nomeDaTarefa: 'task 2'},
-                {nomeDaTarefa: 'task 3'},
-                {nomeDaTarefa: 'task 4'},
-                {nomeDaTarefa: 'task 5'},
-            ], 
             nomeDaTarefa: '',
+            listaTarefas: [
+                {nomeDaTarefa: 'arrumar'},
+                {nomeDaTarefa: 'comer'},
+                {nomeDaTarefa: 'dormir'},
+                {nomeDaTarefa: 'dialogar'},
+                {nomeDaTarefa: 'cantar'},
+            ], 
+            
+            nomeDaTarefa2: '',
+
             listaTarefasCompletadas: [
-                {nomeDaTarefa: 'task 1'},
-                {nomeDaTarefa: 'task 2'},
+                {nomeDaTarefa2: 'task 1'},
+                {nomeDaTarefa2: 'task 2'},
             ],
+
 
         }
     },
@@ -81,13 +85,10 @@ export default {
         },
 
         concluiTarefa(){
-            if(this.nomeDaTarefa.trim() === ''){
-                return;
-            }
-
             this.listaTarefasCompletadas.push({
-                nomeDaTarefa: this.nomeDaTarefa
+                nomeDaTarefa: this.nomeDaTarefa2
             })
+            this.removeTarefa(this.index);
         }
     },
 }
@@ -114,13 +115,14 @@ export default {
     }
 
     .lista-tarefas-completas{
-        background: rgb(7, 213, 249);
+        background: rgb(110, 116, 117);
         color: rgb(8, 8, 8);
         border-radius: 30px;
         border: black solid 3px;
         margin: 8px 0 8px 0;
         padding: 15px;
         text-align: left;
+        text-decoration: line-through;
         width: 740px;
         height: 15px;
         display: inline-block;
