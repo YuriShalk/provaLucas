@@ -1,29 +1,30 @@
-# Prova do  Lucas
+# Prova para o trabalho com o Lucas
 
-essa é uma prova que o lucão me pediu pra fazer
+Essa é uma prova ou exercício que o Lucas me pediu pra fazer para definir o nível de programação
+que encontro ultimamente. (02/2023)
 
 # how to install
 
-primeiro voce precisa clonar esse projeto na sua maquina através do comando:
+Primeiramente, você precisa clonar esse projeto na sua máquina através do comando:
 
 ```
 git clone https://github.com/YuriShalk/provaLucas.git
 ```
 
-apos isso voce precisa ter o node v18.13.0 instalado em sua maquina 
-e rodar o comando para baixar as dependencias:
+Após isso, você precisa ter o node v18.13.0 instalado em sua máquina 
+e rodar o comando para baixar as dependências:
 
 ```
 npm install
 ```
 
-e finalmente para executar use o comando: 
+E por fim, para executar use o comando: 
 
 ```
 npm run serve
 ```
 
-e para acessar a pagina acesse o link abaixo:
+E para acessar a página gerada, acesse o link abaixo:
 
 ```
 http://localhost:8080/
@@ -31,5 +32,5 @@ http://localhost:8080/
 
 # contribuição
 
-desenvolvido por Yuri Gottschalk de Azevedo.
+Desenvolvido por Yuri Gottschalk de Azevedo.
 
