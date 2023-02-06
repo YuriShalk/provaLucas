@@ -10,7 +10,8 @@
         > 
         <button
             id="save-button"
-            @click="salvaTarefa()">
+            @click="salvaTarefa()"
+            >
              Salvar
         </button>
     </div>
@@ -19,7 +20,7 @@
         v-for="(tarefa, index) in listaTarefas"
         :key="tarefa.index"
     >
-    <button id="delete-button" @click="removeTarefa(index)">X</button>
+    <button id="delete-button" @click="removeTarefa(index)">&#10060;</button>
 
     <input 
                 v-model="tarefasCompletadas"
@@ -37,7 +38,11 @@ export default {
     data() {
         return {
             listaTarefas: [
-                  
+                {nomeDaTarefa: 'task 1'},
+                {nomeDaTarefa: 'task 2'},
+                {nomeDaTarefa: 'task 3'},
+                {nomeDaTarefa: 'task 4'},
+                {nomeDaTarefa: 'task 5'},
             ], 
             nomeDaTarefa: '',
             tarefasCompletadas: []
