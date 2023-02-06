@@ -30,7 +30,7 @@ E para acessar a página gerada, acesse o link abaixo:
 http://localhost:8080/
 ```
 
-# contribuição
+# Contribuição
 
 Desenvolvido por Yuri Gottschalk de Azevedo.
 
