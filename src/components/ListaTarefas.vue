@@ -17,22 +17,22 @@
     </div>
     <div 
         class="lista-itens" 
-        v-for="(tarefa, index) in listaTarefas"
-        :key="tarefa.index"
+        v-for="(tarefa, i) in listaTarefas"
+        :key="tarefa.i"
     >
-    <button id="delete-button" @click="removeTarefa(index)">&#10060;</button>
-    <button id="complete-button" @click="concluiTarefa(index)">&#9989;</button>
+    <button id="delete-button" @click="removeTarefa(i)">&#10060;</button>
+    <button id="complete-button" @click="concluiTarefa(i)">&#9989;</button>
 
         {{ tarefa.nomeDaTarefa }}
     
     </div>
 <h2>Things done:</h2>
     <div class="lista-tarefas-completas"
-        v-for="tarefaCompleta in listaTarefasCompletadas"
-        :key="tarefaCompleta.index"
+        v-for="(tarefaCompleta, j) in listaTarefasCompletadas"
+        :key="tarefaCompleta.j"
     >
 
-    <button id="delete-button" @click="removeTarefaCompletada(index)">&#10060;</button>
+    <button id="delete-button" @click="removeTarefaCompletada(j)">&#10060;</button>
     {{ tarefaCompleta.nomeDaTarefa2 }}
 
     </div>
@@ -54,8 +54,11 @@ export default {
             nomeDaTarefa2: '',
 
             listaTarefasCompletadas: [
-                {nomeDaTarefa2: 'task 1'},
-                {nomeDaTarefa2: 'task 2'},
+                {nomeDaTarefa2: 'arrumar'},
+                {nomeDaTarefa2: 'comer'},
+                {nomeDaTarefa2: 'dormir'},
+                {nomeDaTarefa2: 'dialogar'},
+                {nomeDaTarefa2: 'cantar'},
             ],
 
 
