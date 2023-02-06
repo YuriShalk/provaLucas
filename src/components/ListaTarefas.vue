@@ -51,14 +51,10 @@ export default {
                 {nomeDaTarefa: 'cantar'},
             ], 
             
-            nomeDaTarefa2: '',
 
             listaTarefasCompletadas: [
-                {nomeDaTarefa2: 'arrumar'},
-                {nomeDaTarefa2: 'comer'},
-                {nomeDaTarefa2: 'dormir'},
-                {nomeDaTarefa2: 'dialogar'},
-                {nomeDaTarefa2: 'cantar'},
+                {nomeDaTarefa2: 'x'},
+                {nomeDaTarefa2: 'c'},
             ],
 
 
@@ -87,11 +83,12 @@ export default {
             this.listaTarefasCompletadas.splice(index, 1);
         },
 
-        concluiTarefa(){
+        concluiTarefa(i){
+            console.log(i);
             this.listaTarefasCompletadas.push({
-                nomeDaTarefa: this.nomeDaTarefa2
+                nomeDaTarefa2: this.nomeDaTarefa
             })
-            this.removeTarefa(this.index);
+            this.removeTarefa(i)
         }
     },
 }
@@ -119,7 +116,7 @@ export default {
 
     .lista-tarefas-completas{
         background: rgb(110, 116, 117);
-        color: rgb(8, 8, 8);
+        color: rgb(255, 255, 255);
         border-radius: 30px;
         border: black solid 3px;
         margin: 8px 0 8px 0;
