@@ -21,14 +21,19 @@
         :key="tarefa.index"
     >
     <button id="delete-button" @click="removeTarefa(index)">&#10060;</button>
-
-    <input 
-                v-model="tarefasCompletadas"
-                type="checkbox" 
-                id="complete-button"
-                >
+    <button id="complete-button" @click="concluiTarefa(index)">&#9989;</button>
 
         {{ tarefa.nomeDaTarefa }}
+    
+    </div>
+    <h2>Things done:</h2>
+    <div class="lista-tarefas-completas"
+        v-for="tarefaCompleta in listaTarefasCompletadas"
+        :key="tarefaCompleta.index"
+    >
+
+    <button id="delete-button" @click="removeTarefaCompletada(index)">&#10060;</button>
+    {{ tarefaCompleta.nomeDaTarefa }}
 
     </div>
 </template>
@@ -45,7 +50,11 @@ export default {
                 {nomeDaTarefa: 'task 5'},
             ], 
             nomeDaTarefa: '',
-            tarefasCompletadas: []
+            listaTarefasCompletadas: [
+                {nomeDaTarefa: 'task 1'},
+                {nomeDaTarefa: 'task 2'},
+            ],
+
         }
     },
 
@@ -67,8 +76,18 @@ export default {
 
         },
 
-        concluiTarefa(index){
-            console.log(index);
+        removeTarefaCompletada(index){
+            this.listaTarefasCompletadas.splice(index, 1);
+        },
+
+        concluiTarefa(){
+            if(this.nomeDaTarefa.trim() === ''){
+                return;
+            }
+
+            this.listaTarefasCompletadas.push({
+                nomeDaTarefa: this.nomeDaTarefa
+            })
         }
     },
 }
@@ -81,6 +100,20 @@ export default {
     }
 
     .lista-itens{
+        background: rgb(7, 213, 249);
+        color: rgb(8, 8, 8);
+        border-radius: 30px;
+        border: black solid 3px;
+        margin: 8px 0 8px 0;
+        padding: 15px;
+        text-align: left;
+        width: 740px;
+        height: 15px;
+        display: inline-block;
+        
+    }
+
+    .lista-tarefas-completas{
         background: rgb(7, 213, 249);
         color: rgb(8, 8, 8);
         border-radius: 30px;
