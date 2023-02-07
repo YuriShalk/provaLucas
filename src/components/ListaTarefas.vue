@@ -33,6 +33,7 @@
     >
 
     <button id="delete-button" @click="removeTarefaCompletada(j)">&#10060;</button>
+    <button id="return-button" @click="retornaTarefaCompletada(j)">&#8617;</button>
     {{ tarefaCompleta.nomeDaTarefa }}
 
     </div>
@@ -46,17 +47,13 @@ export default {
             listaTarefas: [
                 {nomeDaTarefa: 'arrumar'},
                 {nomeDaTarefa: 'comer'},
-                {nomeDaTarefa: 'dormir'},
-                {nomeDaTarefa: 'dialogar'},
                 {nomeDaTarefa: 'cantar'},
             ], 
             
 
             listaTarefasCompletadas: [
-                {nomeDaTarefa: 'x'},
-                {nomeDaTarefa: 'c'},
+                {nomeDaTarefa: 'apartando um boi na floresta'},
             ],
-
 
         }
     },
@@ -74,23 +71,33 @@ export default {
             this.nomeDaTarefa= '' 
         },
 
-        removeTarefa(index){
-            this.listaTarefas.splice(index, 1);
+        removeTarefa(i){
+            this.listaTarefas.splice(i, 1);
 
         },
-
-        removeTarefaCompletada(index){
-            this.listaTarefasCompletadas.splice(index, 1);
-        },
-
+        
         concluiTarefa(i){
-
+            
             this.listaTarefasCompletadas.push({
-                nomeDaTarefa: this.listaTarefas[i].nomeDaTarefa
+                nomeDaTarefa:' ' + this.listaTarefas[i].nomeDaTarefa
             });
-
+            
             this.removeTarefa(i)
         },
+
+        retornaTarefaCompletada(i){
+            console.log(this.listaTarefasCompletadas[i].nomeDaTarefa)
+            
+            this.listaTarefas.push({
+                nomeDaTarefa:' ' + this.listaTarefasCompletadas[i].nomeDaTarefa
+            });
+            
+            this.removeTarefaCompletada(i)
+        },
+
+        removeTarefaCompletada(i){
+            this.listaTarefasCompletadas.splice(i, 1);
+        }
 
     },
 }
