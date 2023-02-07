@@ -40,19 +40,19 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
             nomeDaTarefa: '',
             listaTarefas: [
-                {nomeDaTarefa: 'arrumar'},
-                {nomeDaTarefa: 'comer'},
-                {nomeDaTarefa: 'cantar'},
+                {nomeDaTarefa: 'Começar a ler um livro (Exemplo)'},
+                {nomeDaTarefa: 'Meditar 5 minutos (Exemplo)'},
             ], 
             
 
             listaTarefasCompletadas: [
-                {nomeDaTarefa: 'apartando um boi na floresta'},
+                {nomeDaTarefa: 'Aqui ficam as tarefas já realizadas!'},
             ],
 
         }
@@ -60,7 +60,6 @@ export default {
 
     methods: {
         salvaTarefa(){
-
             if(this.nomeDaTarefa.trim() === ''){
                 return;
             }
@@ -68,12 +67,22 @@ export default {
             this.listaTarefas.push({
                 nomeDaTarefa: this.nomeDaTarefa
             })
+
+            //LOCALSTORAGE
+            // const listaStorage = JSON.parse(localStorage.getItem('listaStorage') || '[]');
+            // listaStorage.push({
+            //     nomeDaTarefa: this.nomeDaTarefa
+            // });
+            
+            // localStorage.setItem("listaStorage", JSON.stringify(listaStorage));
+            
             this.nomeDaTarefa= '' 
+
         },
+
 
         removeTarefa(i){
             this.listaTarefas.splice(i, 1);
-
         },
         
         concluiTarefa(i){
@@ -86,8 +95,6 @@ export default {
         },
 
         retornaTarefaCompletada(i){
-            console.log(this.listaTarefasCompletadas[i].nomeDaTarefa)
-            
             this.listaTarefas.push({
                 nomeDaTarefa:' ' + this.listaTarefasCompletadas[i].nomeDaTarefa
             });
@@ -97,7 +104,7 @@ export default {
 
         removeTarefaCompletada(i){
             this.listaTarefasCompletadas.splice(i, 1);
-        }
+        }, 
 
     },
 }
