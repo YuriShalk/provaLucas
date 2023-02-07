@@ -33,7 +33,7 @@
     >
 
     <button id="delete-button" @click="removeTarefaCompletada(j)">&#10060;</button>
-    {{ tarefaCompleta.nomeDaTarefa2 }}
+    {{ tarefaCompleta.nomeDaTarefa }}
 
     </div>
 </template>
@@ -53,8 +53,8 @@ export default {
             
 
             listaTarefasCompletadas: [
-                {nomeDaTarefa2: 'x'},
-                {nomeDaTarefa2: 'c'},
+                {nomeDaTarefa: 'x'},
+                {nomeDaTarefa: 'c'},
             ],
 
 
@@ -84,12 +84,14 @@ export default {
         },
 
         concluiTarefa(i){
-            console.log(i);
+
             this.listaTarefasCompletadas.push({
-                nomeDaTarefa2: this.nomeDaTarefa
-            })
+                nomeDaTarefa: this.listaTarefas[i].nomeDaTarefa
+            });
+
             this.removeTarefa(i)
-        }
+        },
+
     },
 }
 </script>
