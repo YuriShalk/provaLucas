@@ -40,7 +40,6 @@
 </template>
 
 <script>
-
 export default {
     data() {
         return {
@@ -107,6 +106,23 @@ export default {
         }, 
 
     },
+
+    watch: {
+        listaTarefas: {
+            handler(){
+                localStorage.setItem('listaTarefas', JSON.stringify(this.listaTarefas))
+            },
+            deep: true
+        },
+
+    },
+
+    mounted() {
+            if(localStorage.getItem('listaTarefas')){
+                this.listaTarefas = JSON.parse(localStorage.getItem('listaTarefas'))
+            }
+        }
+    
 }
 </script>
 
