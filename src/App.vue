@@ -2,7 +2,7 @@
 
   <TheHeader />
 
-  <img alt="App logo" src="./assets/logo.jpg">
+  <img id="logo" alt="App logo" src="./assets/logo.jpg">
 
   <ListaTarefas />
 
@@ -36,4 +36,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>

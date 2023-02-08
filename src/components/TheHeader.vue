@@ -2,8 +2,11 @@
     <header>
         GET THINGS FUCKING DONE!!!
     </header>
-    <p class="frasemotivacional">"Teste"</p>
+    <br><br>
 </template>
+
+<script setup>
+</script>
 
 <script>
 export default {
