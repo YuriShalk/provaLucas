@@ -66,14 +66,6 @@ export default {
             this.listaTarefas.push({
                 nomeDaTarefa: this.nomeDaTarefa
             })
-
-            //LOCALSTORAGE
-            // const listaStorage = JSON.parse(localStorage.getItem('listaStorage') || '[]');
-            // listaStorage.push({
-            //     nomeDaTarefa: this.nomeDaTarefa
-            // });
-            
-            // localStorage.setItem("listaStorage", JSON.stringify(listaStorage));
             
             this.nomeDaTarefa= '' 
 
@@ -103,6 +95,14 @@ export default {
 
         removeTarefaCompletada(i){
             this.listaTarefasCompletadas.splice(i, 1);
+            // localStorage.removeItem('listaTarefasCompletadas', JSON.stringify(this.listaTarefasCompletadas[i]))
+
+            // if(localStorage.getItem('listaTarefasCompletadas')){
+            //     this.listaTarefasCompletadas = JSON.parse(localStorage.getItem('listaTarefasCompletadas'))
+            // } else {
+            //     this.listaTarefasCompletadas = []
+            // }
+
         }, 
 
     },
@@ -115,14 +115,22 @@ export default {
             deep: true
         },
 
+        listaTarefasCompletadas: {
+            handler(){
+                localStorage.setItem('listaTarefasCompletadas', JSON.stringify(this.listaTarefasCompletadas))
+            },
+            deep: true
+        }
+
     },
 
     mounted() {
-            if(localStorage.getItem('listaTarefas')){
+            if(localStorage.getItem('listaTarefas', 'listaTarefasCompletadas')){
                 this.listaTarefas = JSON.parse(localStorage.getItem('listaTarefas'))
+                this.listaTarefasCompletadas = JSON.parse(localStorage.getItem('listaTarefasCompletadas'))
             }
-        }
-    
+        },
+
 }
 </script>
 
