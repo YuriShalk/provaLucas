@@ -41,6 +41,7 @@
 
 <script>
 export default {
+    name: 'AçõesDeTarefa',
     data() {
         return {
             nomeDaTarefa: '',
@@ -95,13 +96,6 @@ export default {
 
         removeTarefaCompletada(i){
             this.listaTarefasCompletadas.splice(i, 1);
-            // localStorage.removeItem('listaTarefasCompletadas', JSON.stringify(this.listaTarefasCompletadas[i]))
-
-            // if(localStorage.getItem('listaTarefasCompletadas')){
-            //     this.listaTarefasCompletadas = JSON.parse(localStorage.getItem('listaTarefasCompletadas'))
-            // } else {
-            //     this.listaTarefasCompletadas = []
-            // }
 
         }, 
 
