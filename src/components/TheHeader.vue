@@ -5,9 +5,6 @@
     <br><br>
 </template>
 
-<script setup>
-</script>
-
 <script>
 export default {
     
@@ -28,10 +25,4 @@ export default {
         display: inline-block;
     }
 
-    .frasemotivacional{
-        text-decoration: underline;
-        font-size: 30px;
-        font-style: italic;
-    }
-    
 </style>
