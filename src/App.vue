@@ -2,7 +2,7 @@
 
   <TheHeader />
 
-  <img id="logo" alt="App logo" src="./assets/logo.jpg">
+  <img id="logo" alt="App logo" src="./assets/logo.png">
 
   <ListaTarefas />
 
