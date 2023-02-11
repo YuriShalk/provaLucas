@@ -32,102 +32,79 @@
     </body>
 </template>
 
-<script>
-export default {
-    name: 'AçõesDeTarefa',
-    data() {
-        return {
-            isDarkMode: false,
+<script setup>
+import { ref, watch, onMounted } from 'vue';
 
-            nomeDaTarefa: '',
-            listaTarefas: [
-                { nomeDaTarefa: 'Começar a ler um livro (Exemplo)' },
-                { nomeDaTarefa: 'Meditar 5 minutos (Exemplo)' },
-            ],
+// state
+const isDarkMode = ref(false);
+const nomeDaTarefa = ref('');
+const listaTarefas = ref([
+    { nomeDaTarefa: 'Começar a ler um livro (Exemplo)' },
+    { nomeDaTarefa: 'Meditar 5 minutos (Exemplo)' },
+]);
 
+const listaTarefasCompletadas = ref([
+    { nomeDaTarefa: 'Aqui ficam as tarefas já realizadas!' },
+]);
 
-            listaTarefasCompletadas: [
-                { nomeDaTarefa: 'Aqui ficam as tarefas já realizadas!' },
-            ],
-
-        }
-    },
-
-    methods: {
-        toggle(currentTheme) {
-            this.isDarkMode = currentTheme
-            document.documentElement.className = currentTheme
-            localStorage.setItem('theme', currentTheme)
-        },
-
-        salvaTarefa() {
-            if (this.nomeDaTarefa.trim() === '') {
-                return;
-            }
-
-            this.listaTarefas.push({
-                nomeDaTarefa: this.nomeDaTarefa
-            })
-
-            this.nomeDaTarefa = ''
-
-        },
-
-
-        removeTarefa(i) {
-            this.listaTarefas.splice(i, 1);
-        },
-
-        concluiTarefa(i) {
-
-            this.listaTarefasCompletadas.push({
-                nomeDaTarefa: ' ' + this.listaTarefas[i].nomeDaTarefa
-            });
-
-            this.removeTarefa(i)
-        },
-
-        retornaTarefaCompletada(i) {
-            this.listaTarefas.push({
-                nomeDaTarefa: ' ' + this.listaTarefasCompletadas[i].nomeDaTarefa
-            });
-
-            this.removeTarefaCompletada(i)
-        },
-
-        removeTarefaCompletada(i) {
-            this.listaTarefasCompletadas.splice(i, 1);
-
-        },
-
-    },
-
-    watch: {
-        listaTarefas: {
-            handler() {
-                localStorage.setItem('listaTarefas', JSON.stringify(this.listaTarefas))
-            },
-            deep: true
-        },
-
-        listaTarefasCompletadas: {
-            handler() {
-                localStorage.setItem('listaTarefasCompletadas', JSON.stringify(this.listaTarefasCompletadas))
-            },
-            deep: true
-        }
-
-    },
-
-    mounted() {
-        if (localStorage.getItem('listaTarefas', 'listaTarefasCompletadas')) {
-            this.listaTarefas = JSON.parse(localStorage.getItem('listaTarefas'))
-            this.listaTarefasCompletadas = JSON.parse(localStorage.getItem('listaTarefasCompletadas'))
-        }
-        this.toggle(JSON.parse(localStorage.getItem('theme')))
-    },
-
+// functions
+function toggle(currentTheme) {
+    isDarkMode.value = currentTheme;
+    document.documentElement.className = currentTheme;
+    localStorage.setItem('theme', currentTheme);
 }
+
+function salvaTarefa(){
+    if (nomeDaTarefa.value.trim() === '') return;
+    listaTarefas.value.push({
+        nomeDaTarefa: this.nomeDaTarefa
+    })    
+    nomeDaTarefa.value = ''
+}
+
+function removeTarefa(i){
+    listaTarefas.value.splice(i, 1);
+}
+
+function concluiTarefa(i) {
+    listaTarefasCompletadas.value.push({
+        nomeDaTarefa: ' ' + listaTarefas.value[i].nomeDaTarefa
+    });
+    removeTarefa(i)
+}
+
+function retornaTarefaCompletada(i) {
+    listaTarefas.value.push({
+        nomeDaTarefa: ' ' + listaTarefasCompletadas.value[i].nomeDaTarefa
+    });
+    removeTarefaCompletada(i)
+}
+
+function removeTarefaCompletada(i) {
+    listaTarefasCompletadas.value.splice(i, 1);
+}
+
+
+// watchers
+watch(() => listaTarefas, (newList) => {
+    localStorage.setItem('listaTarefas', JSON.stringify(newList.value))
+}, {deep: true})
+watch(() => listaTarefasCompletadas, (newList) => {
+    localStorage.setItem('listaTarefasCompletadas', JSON.stringify(newList.value))
+}, {deep: true})
+
+// lifecycle
+onMounted(() => {
+    const todoList = localStorage.getItem('listaTarefas')
+    const todoListCompleted = localStorage.getItem('listaTarefasCompletadas')
+    if (todoList) {
+        listaTarefas.value = JSON.parse(localStorage.getItem('listaTarefas'))
+    }
+    if(todoListCompleted){
+        listaTarefasCompletadas.value = JSON.parse(localStorage.getItem('listaTarefasCompletadas'))
+    }
+    toggle(JSON.parse(localStorage.getItem('theme')))
+})
 </script>
 
 <style>
