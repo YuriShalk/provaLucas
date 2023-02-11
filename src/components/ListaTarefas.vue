@@ -97,13 +97,20 @@ watch(() => listaTarefasCompletadas, (newList) => {
 onMounted(() => {
     const todoList = localStorage.getItem('listaTarefas')
     const todoListCompleted = localStorage.getItem('listaTarefasCompletadas')
+    const preferedTheme = localStorage.getItem('theme');
     if (todoList) {
         listaTarefas.value = JSON.parse(localStorage.getItem('listaTarefas'))
     }
     if(todoListCompleted){
         listaTarefasCompletadas.value = JSON.parse(localStorage.getItem('listaTarefasCompletadas'))
     }
-    toggle(JSON.parse(localStorage.getItem('theme')))
+    if (!preferedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // dark mode
+        toggle(true);
+    }
+    else{
+        toggle(JSON.parse(preferedTheme))
+    }
 })
 </script>
 
